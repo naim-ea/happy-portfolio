@@ -12,7 +12,10 @@
   },
   "dependencies": {
     "@nuxt/http": "latest",
+    "body-parser": "^1.19.2",
     "express": "latest",
+    "intrinsic-scale": "^3.0.4",
+    "node-fetch": "^3.2.3",
     "nuxt": "latest"
   },
   "devDependencies": {
