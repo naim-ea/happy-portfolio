@@ -1,5 +1,6 @@
-import fetch, { FormData } from 'node-fetch'
+import fetch from 'node-fetch'
 const { Router } = require('express')
+const FormData = require('form-data')
 
 const router = Router()
 
@@ -43,9 +44,9 @@ const detect = async (dataURL) => {
   // Relay snapshot to faceplusplus
   const base64 = dataURL.replace(/^data:image\/(png|jpg);base64,/, '')
   const formData = new FormData()
-  formData.set('api_key', process.env.FACE_PLUS_KEY)
-  formData.set('api_secret', process.env.FACE_PLUS_SECRET)
-  formData.set('image_base64', base64)
+  formData.append('api_key', process.env.FACE_PLUS_KEY)
+  formData.append('api_secret', process.env.FACE_PLUS_SECRET)
+  formData.append('image_base64', base64)
   const result = await fetch(`https://api-us.faceplusplus.com/facepp/v3/detect`, 
     {
       method: 'POST',
@@ -60,11 +61,11 @@ const detect = async (dataURL) => {
 // through analysis for enotion data, etc
 const analyze = async (token) => {
   const formData = new FormData()
-  formData.set('api_key', process.env.FACE_PLUS_KEY)
-  formData.set('api_secret', process.env.FACE_PLUS_SECRET)
-  formData.set('face_tokens', token)
-  formData.set('return_landmark', 1)
-  formData.set('return_attributes', 'gender,age,emotion,facequality')
+  formData.append('api_key', process.env.FACE_PLUS_KEY)
+  formData.append('api_secret', process.env.FACE_PLUS_SECRET)
+  formData.append('face_tokens', token)
+  formData.append('return_landmark', 1)
+  formData.append('return_attributes', 'gender,age,emotion,facequality')
   const result = await fetch(`https://api-us.faceplusplus.com/facepp/v3/face/analyze`, 
     {
       method: 'POST',
