@@ -49,7 +49,7 @@ export default {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
           video: { width: 640, height: 480, facingMode: 'user' },
-          audio: true,
+          audio: false,
         })
 
         // Return stream
