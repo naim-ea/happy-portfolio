@@ -11,6 +11,9 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
+    "@babel/plugin-proposal-private-methods": "^7.16.11",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
     "@nuxt/http": "latest",
     "body-parser": "^1.19.2",
     "express": "latest",
