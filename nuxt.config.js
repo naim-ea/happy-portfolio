@@ -75,20 +75,5 @@ export default {
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
-  build: {
-    babel: {
-      presets: [
-        [
-          "@babel/preset-env",
-          {
-            targets: { node: "current" },
-          },
-        ],
-        "@babel/preset-typescript",
-      ],
-      plugins: [
-        "@babel/plugin-proposal-private-methods",
-      ]
-    }
-  }
+  build: {}
 }

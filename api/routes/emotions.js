@@ -1,5 +1,5 @@
-import fetch from 'node-fetch'
 const { Router } = require('express')
+const axios = require('axios')
 const FormData = require('form-data')
 
 const router = Router()
@@ -47,14 +47,14 @@ const detect = async (dataURL) => {
   formData.append('api_key', process.env.FACE_PLUS_KEY)
   formData.append('api_secret', process.env.FACE_PLUS_SECRET)
   formData.append('image_base64', base64)
-  const result = await fetch(`https://api-us.faceplusplus.com/facepp/v3/detect`, 
-    {
-      method: 'POST',
-      body: formData
-    }
-  )
-  const formatted = await result.json()
-  return formatted
+  const formHeaders = formData.getHeaders();
+ 
+  const result = await axios.post('https://api-us.faceplusplus.com/facepp/v3/detect', formData, {
+    headers: {
+      ...formHeaders,
+    },
+  })
+  return result.data
 }
 
 // Receive a valid face token and run
@@ -66,14 +66,14 @@ const analyze = async (token) => {
   formData.append('face_tokens', token)
   formData.append('return_landmark', 1)
   formData.append('return_attributes', 'gender,age,emotion,facequality')
-  const result = await fetch(`https://api-us.faceplusplus.com/facepp/v3/face/analyze`, 
-    {
-      method: 'POST',
-      body: formData
-    }
-  )
-  const formatted = await result.json()
-  return formatted
+  const formHeaders = formData.getHeaders();
+ 
+  const result = await axios.post('https://api-us.faceplusplus.com/facepp/v3/face/analyze', formData, {
+    headers: {
+      ...formHeaders,
+    },
+  })
+  return result.data
 }
 
 router.post('/emotions', async function (req, res, next) {

@@ -84,6 +84,7 @@ export default {
       const imageURL = this.emotions.canvas.toDataURL('image/jpeg', 0.5)
 
       const data = await this.$http.$post('/api/emotions/', { url: imageURL })
+      console.log(data)
       this.emotions.detection = data.detection
       this.emotions.analysis = data.analysis
     },
