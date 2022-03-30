@@ -72,8 +72,7 @@ export default {
   // },
 
   http: {
-    host: process.env.NODE_ENV == 'development' ? 'localhost' : 'happy-portfolio.vercel.app',
-    port: process.env.NODE_ENV == 'development' ? 3000 : null,
+    baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://happy-portfolio.vercel.app'
   },
 
   /*
