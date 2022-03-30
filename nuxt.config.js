@@ -71,6 +71,11 @@ export default {
   //  host: '0.0.0.0' // default: localhost
   // },
 
+  http: {
+    host: process.env.NODE_ENV == 'development' ? 'localhost' : 'happy-portfolio.vercel.app',
+    port: process.env.NODE_ENV == 'development' ? 3000 : null,
+  },
+
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
